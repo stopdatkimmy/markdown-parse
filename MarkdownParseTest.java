@@ -11,15 +11,13 @@ import org.junit.*;
 public class MarkdownParseTest {
     @Test
     public void tester() throws IOException {
-        ArrayList<String> expected = new ArrayList<>();
-        expected.add("https://something.com");
-        expected.add("some-page.html");
+        ArrayList<String> expected = List.Of("","","","[https://something.com, some-page.html]");
         List<String> list = List.of("empty-file.md", "empty-link.md", "image-file.md", "test-file.md");
-        for (String string : list) {
-            Path fileName = Path.of(string);
+        for (int i=0; i<list.size(); i++) {
+            Path fileName = Path.of(list[i]);
             String contents = Files.readString(fileName);
             ArrayList<String> links = MarkdownParse.getLinks(contents);
-            assertEquals(expected, links);
+            assertEquals(expected[i], links);
         }
     }
 
