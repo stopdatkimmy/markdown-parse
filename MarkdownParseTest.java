@@ -14,10 +14,10 @@ public class MarkdownParseTest {
         ArrayList<String> expected = List.Of("","","","[https://something.com, some-page.html]");
         List<String> list = List.of("empty-file.md", "empty-link.md", "image-file.md", "test-file.md");
         for (int i=0; i<list.size(); i++) {
-            Path fileName = Path.of(list[i]);
+            Path fileName = Path.of(list.get(i));
             String contents = Files.readString(fileName);
             ArrayList<String> links = MarkdownParse.getLinks(contents);
-            assertEquals(expected[i], links);
+            assertEquals(expected.get(i), links);
         }
     }
 
